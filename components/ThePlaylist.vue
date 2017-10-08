@@ -1,5 +1,5 @@
 <template>
-  <div class="row margin-top-90">
+  <div id="playlist" class="row">
       <SongBox
         v-for="song in getPlaylist"
         :title="song.title"
@@ -7,13 +7,15 @@
         :photo="song.artwork_url"
         :waveimg="song.waveform_url"
         :id="song.id"
+        :user="song.user"
+        :duration="song.duration"
         :key="song.id"
         />
   </div>
 </template>
 
 <script>
-import SongBox from '~/components/song-box.vue'
+import SongBox from '~/components/VSongBox.vue'
 import _ from 'lodash'
 export default {
   components: {

@@ -2,10 +2,11 @@ export default {
   music_list: {},
   next_href: '',
   loading: true,
-  current_category: 'ortega cartel',
+  current_category: '',
+  query: 'ortega cartel',
   current_song: {
     progress: 0,
     song: {},
-    active: false
+    status: false
   }
 }

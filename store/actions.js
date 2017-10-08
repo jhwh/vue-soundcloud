@@ -1,8 +1,8 @@
 import { searchMusic } from '../middleware/api'
 import axios from 'axios'
 export default {
-  init ({ commit }) {
-    searchMusic(this.state.current_category).then((res) => commit('init', res.data))
+  searchByQuery ({ commit }, payload = 'ortega cartel') {
+    searchMusic({ query: payload, genres: this.state.current_category }).then((res) => commit('searchByQuery', {data: res.data, query: payload}))
   },
   loadMoreSongs ({commit}) {
     commit('loading', true)

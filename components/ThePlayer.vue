@@ -15,8 +15,6 @@ export default {
       let proc = (100 * this.$el.currentTime) / this.$el.duration
       this.$store.commit('setSongProgress', proc)
     }
-  },
-  computed: {
   }
 }
 </script>

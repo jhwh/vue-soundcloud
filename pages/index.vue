@@ -1,33 +1,35 @@
 <template>
 
   <section class="container-fluid">
+      <h1 class="margin-top-90 query-title">Search Results:
+        <span>{{ query }}</span>
+      </h1>
       <Navbar />
-      <List />
-      <LoadMoreButton />
+      <Playlist />
+      <MoreButton />
       <Player />
   </section>
 </template>
 
 <script>
-import List from '~/components/list.vue'
-import Navbar from '~/components/navbar.vue'
-import LoadMoreButton from '~/components/load-more-button.vue'
-import Player from '~/components/player.vue'
-import { mapState } from 'vuex'
+import Playlist from '~/components/ThePlaylist.vue'
+import Navbar from '~/components/TheNavbar.vue'
+import MoreButton from '~/components/TheMoreButton.vue'
+import Player from '~/components/ThePlayer.vue'
 export default {
   components: {
     Navbar,
-    List,
-    LoadMoreButton,
+    Playlist,
+    MoreButton,
     Player
   },
   computed: {
-    ...mapState({
-      externals: state => state.externals
-    })
+    query () {
+      return this.$store.getters.qetQuery
+    }
   },
   created () {
-    this.$store.dispatch('init')
+    this.$store.dispatch('searchByQuery')
   }
 }
 </script>

@@ -6,5 +6,7 @@ export default {
     return state.music_list.find(song => song.id === id)
   },
   getCurrentSong: (state) => state.current_song.song,
-  getSongProgress: (state) => (!isNaN(state.current_song.progress) ? state.current_song.progress : 0)
+  getCurrentSongStatus: (state) => state.current_song.status,
+  getSongProgress: (state) => (!isNaN(state.current_song.progress) ? state.current_song.progress : 0),
+  qetQuery: (state) => state.query
 }

@@ -1,44 +1,88 @@
 /* YOUR CUSTOM STYLES */
-.card{
+
+.card {
   margin-bottom: 30px;
 }
-.card .card-text, .card-title{
-  height: 50px;
+#playlist {
+  margin-top: 35px;
+}
+
+.card .card-text, .card-title {
+  font-size: 15px;
+  color: #5a5a5a;
+  font-weight: 300!important;
+}
+
+.card .card-text, p.card-title {
+  font-size: 15px;
+  color: #000;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+
+.query-title {
+  font-size: 20px;
+}
+
+.query-title span {
+  display: block;
+  font-size: 40px;
+  margin-top: 20px;
+  text-transform: uppercase;
+}
+
+.card-title i {
+  margin-top: 2px;
+}
+
+.duration {
+  margin-bottom: 0!important;
+  margin-top: 10px;
+  color: #5a5a5a;
+  font-weight: 300;
 }
 
 .btn.purple-gradient {
-    background: -webkit-linear-gradient(50deg,#ff6ec4,#7873f5);
-    background: linear-gradient(40deg,#ff6ec4,#7873f5);
-    -webkit-transition: .5s ease;
-    transition: .5s ease;
+  background: -webkit-linear-gradient(50deg, #ff6ec4, #7873f5);
+  background: linear-gradient(40deg, #ff6ec4, #7873f5);
+  -webkit-transition: .5s ease;
+  transition: .5s ease;
 }
 
 .purple-gradient {
-    background: -webkit-linear-gradient(50deg,#ff6ec4,#7873f5);
-    background: linear-gradient(40deg,#ff6ec4,#7873f5);
+  background: -webkit-linear-gradient(50deg, #ff6ec4, #7873f5);
+  background: linear-gradient(40deg, #ff6ec4, #7873f5);
 }
-.margin-top-90{
-  margin-top:90px;
+
+.margin-top-90 {
+  margin-top: 90px;
 }
-.btn{
+
+.btn {
   margin: 0;
 }
-.btn .fa{
-  font-size: 30px;
+
+.btn .fa {
+  font-size: 20px;
 }
+
 .waves-effect {
-    position: relative;
-    cursor: pointer;
-    overflow: hidden;
-    -moz-user-select: none;
-    user-select: none;
-    z-index: 1;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  -moz-user-select: none;
+  user-select: none;
+  z-index: 1;
 }
 
 .btn-more {
-  margin:0 auto;
+  margin: 0 auto;
   margin-bottom: 40px;
 }
+
 .card img {
   width: 100%;
   height: 100%;
@@ -51,11 +95,12 @@
   background-size: contain;
   position: relative;
 }
-.progress-wave{
+
+.progress-wave {
   width: 0%;
   height: 100%;
   position: absolute;
-  background: -webkit-linear-gradient(50deg,rgba(255,110,196,0.8),#7873f5);
-  background: linear-gradient(40deg,rgba(255,110,196,0.8),#7873f5);
+  background: -webkit-linear-gradient(50deg, rgba(255, 110, 196, 0.8), #7873f5);
+  background: linear-gradient(40deg, rgba(255, 110, 196, 0.8), #7873f5);
   transition-timing-function: linear;
 }
