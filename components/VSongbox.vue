@@ -57,8 +57,7 @@ export default {
   methods: {
     toggle () {
       const song = this.$store.getters.getSongById(this.id)
-      const audio = document.querySelector('audio')
-      this.togglePlayer(audio)
+      this.togglePlayer()
       this.$store.commit('setCurrentSong', { song, status: this.getSongStatus() })
     },
     setSongProgress () {
@@ -67,7 +66,8 @@ export default {
     isSongActive () {
       return this.id === this.$store.getters.getCurrentSong.id
     },
-    togglePlayer (audio) {
+    togglePlayer () {
+      const audio = document.querySelector('audio')
       if (this.$store.getters.getCurrentSong.id !== undefined) {
         audio.paused ? audio.play() : audio.pause()
       }
