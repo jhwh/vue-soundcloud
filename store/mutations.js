@@ -10,7 +10,7 @@ export default {
     state.next_href = data.next_href
     state.loading = false
   },
-  setCurrentSong (state, { song, status }) {
+  setCurrentSong (state, { song, status = true }) {
     state.current_song.song = song
     state.current_song.status = status
   },

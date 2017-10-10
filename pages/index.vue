@@ -1,10 +1,9 @@
 <template>
-
   <section class="container-fluid">
       <h1 class="margin-top-90 query-title">Search Results:
         <span>{{ query }}</span>
       </h1>
-      <Navbar />
+      <MainHeader />
       <Playlist />
       <MoreButton />
       <Player />
@@ -13,12 +12,12 @@
 
 <script>
 import Playlist from '~/components/ThePlaylist.vue'
-import Navbar from '~/components/TheNavbar.vue'
+import MainHeader from '~/components/TheHeader.vue'
 import MoreButton from '~/components/TheMoreButton.vue'
 import Player from '~/components/ThePlayer.vue'
 export default {
   components: {
-    Navbar,
+    MainHeader,
     Playlist,
     MoreButton,
     Player

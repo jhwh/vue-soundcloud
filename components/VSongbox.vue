@@ -1,5 +1,5 @@
 <template>
-  <div class="col-sm-3">
+  <div class="col-md-3">
     <div class="card">
         <!--Card image-->
         <div
@@ -25,13 +25,13 @@
             <!--Text-->
             <p class="card-text">{{ title }}</p>
             <div class="row">
-              <div class="col-sm-6">
+              <div class="col-xs-6">
                 <a href="#" v-on:click.prevent="toggle" class="btn btn-primary">
                   <i v-if="songStatus" class="fa fa-play" aria-hidden="true"></i>
                   <i v-else class="fa fa-pause" aria-hidden="true"></i>
                 </a>
               </div>
-              <div class="col-sm-6">
+              <div class="col-xs-6">
                 <p class="duration text-right">
                   {{ displayInMinutes() }}
                 </p>

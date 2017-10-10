@@ -1,5 +1,5 @@
 export default {
-  music_list: {},
+  music_list: [],
   next_href: '',
   loading: true,
   current_category: '',

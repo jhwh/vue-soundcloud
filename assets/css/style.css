@@ -95,6 +95,7 @@
   background-attachment: fixed;
   background-size: contain;
   position: relative;
+  border-radius: 5px;
 }
 
 .progress-wave {
@@ -214,4 +215,95 @@
   80%, 90% {
     stroke: #fff;
   }
+}
+
+.player {
+  background: white;
+  width: 20rem;
+  height: 6rem;
+  bottom: 15px;
+  right: 15px;
+  position: fixed;
+  -moz-box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.5);
+}
+
+.progress-search {
+  height: .5rem;
+  width: 100%;
+  background-color: #C0C0C0;
+}
+.progress-search .bar {
+  height: 100%;
+  background: -webkit-linear-gradient(50deg, #ff6ec4, #7873f5);
+  background: linear-gradient(40deg, #ff6ec4, #7873f5);
+}
+
+.current-track figure.albumn-cover {
+  float: left;
+  width: 5.5rem;
+  height: 5.5rem;
+}
+.current-track figure.albumn-cover img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.track-name {
+  margin-left: 6rem;
+  padding-top: 6px;
+}
+.track-name a {
+  color: #333;
+  text-decoration: none;
+  overflow: hidden;
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 90%;
+}
+.track-name a:hover {
+  text-decoration: underline;
+}
+.track-name h1 {
+  font-size: 1.25em;
+  margin-bottom: 0;
+}
+.track-name h2 {
+  font-size: .75em;
+  font-weight: 300;
+  color: #C0C0C0;
+  margin-bottom: 9px;
+}
+.track-name h2 a {
+  color: #C0C0C0;
+}
+.track-name h2 a:hover {
+  color: #3E9CC8;
+}
+
+.controls {
+  margin-left: 5.5rem;
+  color: #C0C0C0;
+}
+.controls ul {
+  margin: 0;
+  padding: 0;
+}
+.controls ul li {
+  display: block;
+  list-style: none;
+  width: 16.6666%;
+  float: left;
+  text-align: center;
+  position: relative;
+  height: 2rem;
+  line-height: 2rem;
+}
+.controls ul li.active, .controls ul li:hover {
+  color: #3E9CC8;
+}
+.controls ul li:hover {
+  background-color: #f3f3f3;
 }
