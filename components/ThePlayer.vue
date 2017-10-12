@@ -44,7 +44,9 @@
             </li>
       			<li v-on:click.prevent="playNext"><i class="fa fa-fast-forward"></i></li>
       			<li class="toggle"><i class="fa fa-random"></i></li>
-            <li v-on:click.prevent="togglePlayerType"><i class="fa fa-ellipsis-v"></i></li>
+            <li v-on:click.prevent="togglePlayerType"
+                v-bind:class="{ active: this.$store.getters.getPlayerType }">
+              <i class="fa fa-ellipsis-v"></i></li>
       		</ul>
       	</div>
       </div>
