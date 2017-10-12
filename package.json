@@ -16,7 +16,8 @@
     "axios": "^0.16.2",
     "lodash": "^4.17.4",
     "nuxt": "^1.0.0-rc11",
-    "sass-loader": "^6.0.6"
+    "sass-loader": "^6.0.6",
+    "vue-slider-component": "^2.4.3"
   },
   "devDependencies": {
     "babel-eslint": "^7.2.3",

@@ -14,11 +14,15 @@ export default {
     state.current_song.song = song
     state.current_song.status = status
   },
-  setSongProgress (state, data) {
-    state.current_song.progress = data
+  setSongProgress (state, { proc, currentTime }) {
+    state.current_song.progress = proc
+    state.current_song.current_time = currentTime
   },
   setQuery (state, data) {
     state.query = data
   },
-  loading: (state, data) => { state.loading = data }
+  setRepeatSong: (state, data) => { state.repeat_song = data },
+  setRepeatPlaylist: (state, data) => { state.repeat_playlist = data },
+  loading: (state, data) => { state.loading = data },
+  togglePlayerType: (state, data) => { state.player_type = data }
 }

@@ -1,7 +1,10 @@
 <template>
   <div>
-    <audio :src="getCurrentSongStream()" v-on:timeupdate="onTimeUpdateListener" v-on:ended="playNext" autoPlay></audio>
-    <div v-if="getCurrentSong()" class="player">
+    <audio :src="getCurrentSongStream()" v-on:timeupdate="onTimeUpdateListener" v-on:ended="autoPlay" autoPlay></audio>
+    <div v-if="getCurrentSong()"
+         class="player"
+         v-bind:class="{ bigPlayer: this.$store.getters.getPlayerType }"
+      >
       	<div class="progress-search">
       		<div class="bar"
                :style="{ 'width': this.$store.getters.getSongProgress + '%' }"></div>
@@ -13,11 +16,27 @@
             <h2>
               <span class="artist"><a target="_blank" :href="getCurrentSong().user.permalink_url">{{ getCurrentSong().user.permalink }}</a></span>
             </h2>
+            <input v-if="this.$store.getters.getPlayerType"
+                   type="range"
+                   min="0"
+                   :max="this.$store.getters.getCurrentSong.duration"
+                   v-model="currentTime"
+                   v-on:change="setPlayerTime"
+                   v-on:mouseup="toggleDrag"
+                   v-on:mousedown="toggleDrag"
+                   >
           </div>
       	</div>
       	<div class="controls">
       		<ul>
-      			<li class="active toggle"><i class="fa fa-repeat"></i></li>
+      			<li class="toggle"
+                v-bind:class="{ active: this.$store.getters.getRepeatPlaylist }"
+                v-on:click="toggleRepeat"
+                >
+              <i class="fa fa-repeat">
+                <span v-if="this.$store.getters.getRepeatSong">1</span>
+              </i>
+            </li>
       			<li v-on:click.prevent="playPrev"><i class="fa fa-fast-backward"></i></li>
       			<li v-on:click.prevent="togglePlayer">
               <i v-if="!this.$store.getters.getCurrentSongStatus" class="fa fa-play" aria-hidden="true"></i>
@@ -25,7 +44,7 @@
             </li>
       			<li v-on:click.prevent="playNext"><i class="fa fa-fast-forward"></i></li>
       			<li class="toggle"><i class="fa fa-random"></i></li>
-            <li><i class="fa fa-ellipsis-v"></i></li>
+            <li v-on:click.prevent="togglePlayerType"><i class="fa fa-ellipsis-v"></i></li>
       		</ul>
       	</div>
       </div>
@@ -37,6 +56,16 @@
 import { returnMusicStream } from '../middleware/api'
 import _ from 'lodash'
 export default {
+  components: {
+  },
+  data () {
+    return {
+      repeter: +this.$store.getters.getRepeatPlaylist,
+      value: this.$store.getters.getSongProgress,
+      drag: false,
+      currentTime: 0
+    }
+  },
   methods: {
     getCurrentSongStream (song = this.$store.getters.getCurrentSong) {
       return (song.id !== undefined) ? returnMusicStream(song.id) : ''
@@ -44,7 +73,21 @@ export default {
     onTimeUpdateListener () {
       const audio = document.querySelector('audio')
       let proc = (100 * audio.currentTime) / audio.duration
-      this.$store.commit('setSongProgress', proc)
+      this.$store.commit('setSongProgress', { proc, currentTime: audio.currentTime * 1000 })
+      if (!this.drag) {
+        this.currentTime = audio.currentTime * 1000
+      }
+    },
+    autoPlay () {
+      const audio = document.querySelector('audio')
+      const song = this.$store.getters.getCurrentSong
+      if (!this.$store.getters.getRepeatSong && this.$store.getters.getRepeatPlaylist) {
+        audio.loop = false
+        this.playNext()
+      } else {
+        this.$store.commit('setSongProgress', 0)
+        this.$store.commit('setCurrentSong', { song, status: false })
+      }
     },
     playNext () {
       const nextSongId = this.$store.getters.getNextSongIdByIndex(this.$store.getters.getCurrentSongIndex)
@@ -56,6 +99,7 @@ export default {
     playPrev () {
       const prevSongId = this.$store.getters.getPrevSongIdByIndex(this.$store.getters.getCurrentSongIndex)
       if (prevSongId) {
+        console.log(prevSongId)
         const song = this.$store.getters.getSongById(prevSongId)
         this.$store.commit('setCurrentSong', {song})
       }
@@ -71,6 +115,40 @@ export default {
         audio.paused ? audio.play() : audio.pause()
         this.$store.commit('setCurrentSong', { song, status: !audio.paused })
       }
+    },
+    toggleRepeat () {
+      const audio = document.querySelector('audio')
+      audio.loop = false
+      if (this.repeter === 0) {
+        this.$store.commit('setRepeatPlaylist', true)
+        this.repeter = 1
+      } else if (this.repeter === 1) {
+        this.$store.commit('setRepeatSong', true)
+        this.repeter = 2
+        audio.loop = true
+      } else {
+        this.$store.commit('setRepeatPlaylist', false)
+        this.$store.commit('setRepeatSong', false)
+        this.repeter = 0
+      }
+    },
+    togglePlayerType () {
+      this.$store.commit('togglePlayerType', !this.$store.getters.getPlayerType)
+    },
+    getSongCurrentTime () {
+      console.log(this.drag)
+      if (!this.drag) {
+        return this.$store.getters.getSongCurrentTime
+      }
+    },
+    setPlayerTime (el) {
+      const audio = document.querySelector('audio')
+      let proc = (el.target.value / 1000) / audio.duration
+      this.$store.commit('setSongProgress', { proc, currentTime: el.target.value })
+      audio.currentTime = el.target.value / 1000
+    },
+    toggleDrag () {
+      this.drag = !this.drag
     }
   }
 }
