@@ -2,6 +2,10 @@
 
 > Nuxt.js project
 
+# DEMO
+
+Check the [latest release](http://vue-soundcloud.s3-website-eu-west-1.amazonaws.com/).
+
 ## Build Setup
 
 ``` bash
