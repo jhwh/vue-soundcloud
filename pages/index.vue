@@ -1,5 +1,5 @@
 <template>
-  <section class="container-fluid">
+  <section class="container-fluid padding-bottom-100">
       <h1 class="margin-top-90 query-title">Search Results:
         <span>{{ query }}</span>
       </h1>
@@ -27,8 +27,9 @@ export default {
       return this.$store.getters.qetQuery
     }
   },
-  created () {
-    this.$store.dispatch('searchByQuery')
+  mounted () {
+    const songId = this.$route.query.song
+    this.$route.query.song !== undefined ? this.$store.dispatch('getTrackById', songId) : this.$store.dispatch('searchByQuery')
   }
 }
 </script>

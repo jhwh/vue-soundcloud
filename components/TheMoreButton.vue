@@ -1,6 +1,10 @@
 <template>
   <div class="row">
-      <button v-on:click="loadMoreSongs" type="button" class="btn purple-gradient btn-lg btn-more">{{ loading ? "Loading ..." : "Load More" }}</button>
+    <button v-if="!this.$store.getters.isSingleSong"
+            v-on:click="loadMoreSongs"
+            type="button"
+            class="btn purple-gradient btn-lg btn-more">{{ loading ? "Loading ..." : "Load More" }}
+    </button>
   </div>
 </template>
 

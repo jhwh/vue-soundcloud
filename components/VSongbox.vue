@@ -1,7 +1,6 @@
 <template>
   <div class="col-md-3">
     <div class="card">
-        <!--Card image-->
         <div
           class="img-fluid card-image"
           v-bind:style="{ 'background-image': 'url(' + photo + ')' }">
@@ -13,16 +12,20 @@
             class="img-responsive"
             :src="waveimg" />
         </div>
-        <!--Card content-->
         <div class="card-body">
-            <!--Title-->
             <h4 class="card-title">
               {{ user.permalink }}
+              <a title="share" :href="'/?song=' + id" target="_blank">
+                <i class="fa fa-share pull-right" aria-hidden="true"></i>
+              </a>
               <a :href="user.permalink_url" target="_blank">
                 <i class="fa fa-external-link pull-right" aria-hidden="true"></i>
               </a>
+              <div class="likes-count pull-right">
+                <i class="fa fa-heart" aria-hidden="true"></i>
+                {{ likes }}
+              </div>
             </h4>
-            <!--Text-->
             <p class="card-text">{{ title }}</p>
             <div class="row">
               <div class="col-xs-6">
@@ -52,7 +55,8 @@ export default {
     waveimg: String,
     id: Number,
     user: Object,
-    duration: Number
+    duration: Number,
+    likes: Number
   },
   methods: {
     toggle () {

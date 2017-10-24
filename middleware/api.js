@@ -10,11 +10,19 @@ export const searchMusic = ({query, limit = 20, page = 0, genres = ''}) => {
     `http://api.soundcloud.com/tracks?linked_partitioning=1&client_id=${CLIENT_ID}&q=${query}&limit=${limit}&offset=${page * limit}&genres=${genres}`
   ).then(res => res)
     .then(json => new Promise((resolve, reject) => {
-      if (_.isEmpty(query)) {
-        // reject('Query is empty')
-      } else {
-        resolve(json)
-      }
+      resolve(json)
+    })).catch((err) => {
+      console.log(err)
+      return {}
+    })
+}
+
+export const getTrackById = (id) => {
+  return axios.get(
+    `http://api.soundcloud.com/tracks/${id}.json?client_id=${CLIENT_ID}`
+  ).then(res => res)
+    .then(json => new Promise((resolve, reject) => {
+      resolve(json)
     })).catch((err) => {
       console.log(err)
       return {}

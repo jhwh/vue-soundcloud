@@ -9,6 +9,7 @@
         :id="song.id"
         :user="song.user"
         :duration="song.duration"
+        :likes="song.likes_count"
         :key="song.id"
         />
   </div>
@@ -16,33 +17,15 @@
 
 <script>
 import SongBox from '~/components/VSongBox.vue'
-import _ from 'lodash'
+import { mapGetters } from 'vuex'
 export default {
   components: {
     SongBox
   },
-  methods: {
-    trunc (str, n) {
-      return (_.isString(str) && str.length > n) ? str.substr(0, n - 1) + '...' : str
-    },
-    changeImageSize (str, size) {
-      return !_.isNull(str) ? str.replace('large', `t${size}x${size}`) : ''
-    }
-  },
   computed: {
-    getPlaylist () {
-      let playlist = Array.from(this.$store.getters.playlist)
-      playlist.map((track, index) => {
-        if (_.isNull(track.artwork_url)) {
-          track.artwork_url = `https://source.unsplash.com/${500 + index}x${500 + index}/?music`
-        } else {
-          track.artwork_url = this.changeImageSize(track.artwork_url, 500)
-        }
-        track.description = this.trunc(track.description, 100)
-        track.title = this.trunc(track.title, 50)
-      })
-      return playlist
-    }
+    ...mapGetters([
+      'getPlaylist'
+    ])
   }
 }
 </script>
